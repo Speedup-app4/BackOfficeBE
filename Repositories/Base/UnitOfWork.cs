@@ -1,8 +1,26 @@
-﻿using System.Data;
-using BackOffice.Interfaces;
+using System;
+using System.Data;
 using BackOffice.Interfaces.Base;
-using BackOffice.Interfaces.Coupon;
-using BackOffice.Repositories.Coupon;
+using BackOffice.Interfaces.Modules.Coupon;
+using BackOffice.Interfaces.Modules.Employees;
+using BackOffice.Interfaces.Modules.Menu;
+using BackOffice.Interfaces.Modules.Payment;
+using BackOffice.Interfaces.Modules.Products;
+using BackOffice.Interfaces.Modules.Refund;
+using BackOffice.Interfaces.Modules.Report;
+using BackOffice.Interfaces.Modules.Station;
+using BackOffice.Interfaces.Modules.System;
+using BackOffice.Interfaces.Modules.Table;
+using BackOffice.Repositories.Modules.Coupon;
+using BackOffice.Repositories.Modules.Employees;
+using BackOffice.Repositories.Modules.Menu;
+using BackOffice.Repositories.Modules.Payment;
+using BackOffice.Repositories.Modules.Products;
+using BackOffice.Repositories.Modules.Refund;
+using BackOffice.Repositories.Modules.Report;
+using BackOffice.Repositories.Modules.Station;
+using BackOffice.Repositories.Modules.System;
+using BackOffice.Repositories.Modules.Table;
 using Npgsql;
 
 namespace BackOffice.Repositories.Base
@@ -75,7 +93,7 @@ namespace BackOffice.Repositories.Base
         private IOrderCatRepository? _orderCat;
         private IMenuOrderPosRepository? _menuOrderPos;
         private IMenuProdPosRepository? _menuProdPos;
-        private IMultiMenuNamesRepository? _multiMenuNames;
+        private IMultiMenuNameRepository? _multiMenuName;
         private IEmployeeRepository? _employee;
         private IEmpSchedInfoRepository? _empSchedule;
         private IPayRollRepository? _payRoll;
@@ -123,8 +141,8 @@ namespace BackOffice.Repositories.Base
             _menuOrderPos ??= new MenuOrderPosRepository(this);
         public IMenuProdPosRepository MenuProdPos =>
             _menuProdPos ??= new MenuProdPosRepository(this);
-        public IMultiMenuNamesRepository MultiMenuNames =>
-            _multiMenuNames ??= new MultiMenuNamesRepository(this);
+        public IMultiMenuNameRepository MultiMenuName =>
+            _multiMenuName ??= new MultiMenuNameRepository(this);
         public IEmployeeRepository Employee => _employee ??= new EmployeeRepository(this);
         public IEmpSchedInfoRepository EmpSchedInfo =>
             _empSchedule ??= new EmpSchedInfoRepository(this);

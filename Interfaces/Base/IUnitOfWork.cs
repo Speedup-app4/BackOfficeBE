@@ -1,5 +1,15 @@
-﻿using System.Data;
-using BackOffice.Interfaces.Coupon;
+using System;
+using System.Data;
+using BackOffice.Interfaces.Modules.Coupon;
+using BackOffice.Interfaces.Modules.Employees;
+using BackOffice.Interfaces.Modules.Menu;
+using BackOffice.Interfaces.Modules.Payment;
+using BackOffice.Interfaces.Modules.Products;
+using BackOffice.Interfaces.Modules.Refund;
+using BackOffice.Interfaces.Modules.Report;
+using BackOffice.Interfaces.Modules.Station;
+using BackOffice.Interfaces.Modules.System;
+using BackOffice.Interfaces.Modules.Table;
 
 namespace BackOffice.Interfaces.Base
 {
@@ -32,7 +42,7 @@ namespace BackOffice.Interfaces.Base
         IOrderCatRepository OrderCat { get; }
         IMenuOrderPosRepository MenuOrderPos { get; }
         IMenuProdPosRepository MenuProdPos { get; }
-        IMultiMenuNamesRepository MultiMenuNames { get; }
+        IMultiMenuNameRepository MultiMenuName { get; }
         IEmployeeRepository Employee { get; }
         IEmpSchedInfoRepository EmpSchedInfo { get; }
         IJobPosRepository JobPos { get; }

@@ -1,4 +1,9 @@
-﻿namespace BackOffice.Interfaces.Base
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace BackOffice.Interfaces.Base
 {
     public interface IReadRepository<T>
         where T : class

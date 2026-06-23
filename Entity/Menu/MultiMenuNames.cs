@@ -1,9 +1,12 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackOffice.Entity.Menu
 {
-    public class MultiMenuNames
+    [Table("MultiMenuNames")]
+    public class MultiMenuName
     {
         public Guid ClientId { get; set; }
 
@@ -11,7 +14,7 @@ namespace BackOffice.Entity.Menu
         public int MENUINDEX { get; set; }
         public required string DESCRIPT { get; set; }
         public required int RevCenter { get; set; } //* Rev ID
-        public required short ISACTIVE { get; set; } = 1;
+        public short ISACTIVE { get; set; } = 1;
 
         // ---------------------------------------------------------
         // ---------------------------------------------------------
@@ -24,7 +27,7 @@ namespace BackOffice.Entity.Menu
         public int? SNUM { get; set; } = -1;
     }
 
-    public class MultiMenuNamesUpdate
+    public class MultiMenuNameUpdate
     {
         [NotMapped]
         public required int MENUINDEX { get; set; }

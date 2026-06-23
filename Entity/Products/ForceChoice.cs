@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,12 +11,12 @@ namespace BackOffice.Entity.Products
 
         [Key]
         public int UNIQUEID { get; set; }
-        public required int OPTIONINDEX { get; set; } //* Question ID
+        public int OPTIONINDEX { get; set; } //* Question ID
         public required int CHOICE { get; set; } //* PRODNUM
         public required short PriceMode { get; set; } = 0;
-        public required decimal FixedPrice { get; set; } = 0;
+        public decimal FixedPrice { get; set; } = 0;
         public required short Sequence { get; set; }
-        public required short IsActive { get; set; } = 1;
+        public short IsActive { get; set; } = 1;
 
         // ---------------------------------------------------------
         // ---------------------------------------------------------

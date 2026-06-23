@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +12,7 @@ namespace BackOffice.Entity.Payment
         [Key]
         public int METHODNUM { get; set; }
         public required string DESCRIPT { get; set; }
-        public required short ISACTIVE { get; set; } = 1;
+        public short ISACTIVE { get; set; } = 1;
 
         // ---------------------------------------------------------
         // ---------------------------------------------------------
@@ -22,48 +23,48 @@ namespace BackOffice.Entity.Payment
         public short? NumDecimals { get; set; }
         public string? SwipeStarts { get; set; }
         public int? AccountCode { get; set; }
-        public short? UpdateStatus { get; set; } = 1;
+        public short UpdateStatus { get; set; } = 1;
         public int? AccountCodeChange { get; set; }
         public short? AskForTip { get; set; }
         public short? PreAuth { get; set; }
         public short? PrintOnRec { get; set; }
         public double? TipCharge { get; set; }
         public int? PAYIN { get; set; }
-        public int? TenderSettlement { get; set; } = 0;
-        public int? ShowCalculatedPayment { get; set; } = 0;
-        public double? CurBankBalance { get; set; } = 0;
+        public int TenderSettlement { get; set; } = 0;
+        public int ShowCalculatedPayment { get; set; } = 0;
+        public double CurBankBalance { get; set; } = 0;
         public int? AccCodePayInOut { get; set; }
         public int? AccCodeOverShort { get; set; }
         public string? PLink { get; set; }
         public short? ForbidOnWeb { get; set; }
         public string? DllName { get; set; }
-        public short? NoDrawer { get; set; } = 0;
-        public short? CanRetip { get; set; } = 0;
-        public short? NoSwipe { get; set; } = 0;
-        public short? IsEFT { get; set; } = 0;
-        public short? HasDenoms { get; set; } = 0;
+        public short NoDrawer { get; set; } = 0;
+        public short CanRetip { get; set; } = 0;
+        public short NoSwipe { get; set; } = 0;
+        public short IsEFT { get; set; } = 0;
+        public short HasDenoms { get; set; } = 0;
         public byte[]? Picture { get; set; }
-        public short? AskCashBack { get; set; } = 0;
-        public short? KeepChange { get; set; } = 0;
-        public short? DisableExpiry { get; set; } = 0;
-        public short? CardNumFormat { get; set; } = 0;
-        public short? AuthSlipWithReceipt { get; set; } = 0;
+        public short AskCashBack { get; set; } = 0;
+        public short KeepChange { get; set; } = 0;
+        public short DisableExpiry { get; set; } = 0;
+        public short CardNumFormat { get; set; } = 0;
+        public short AuthSlipWithReceipt { get; set; } = 0;
         public double? MinValue { get; set; }
         public double? MaxValue { get; set; }
-        public short? AuthSlipReprint { get; set; } = 0;
-        public short? AskCVV { get; set; } = 0;
-        public int? LCU { get; set; } = 0;
-        public int? LCURoundUp { get; set; } = 0;
-        public short? MemGiftOnly { get; set; } = 0;
-        public short? NotInPaymtList { get; set; } = 0;
-        public int? SNUM { get; set; } = -1;
-        public long? ReflectionUpdate { get; set; } = 0;
-        public short? PromptNote { get; set; } = 0;
+        public short AuthSlipReprint { get; set; } = 0;
+        public short AskCVV { get; set; } = 0;
+        public int LCU { get; set; } = 0;
+        public int LCURoundUp { get; set; } = 0;
+        public short MemGiftOnly { get; set; } = 0;
+        public short NotInPaymtList { get; set; } = 0;
+        public int SNUM { get; set; } = -1;
+        public long ReflectionUpdate { get; set; } = 0;
+        public short PromptNote { get; set; } = 0;
         public int? PMReportNum { get; set; }
-        public short? AllowVoids { get; set; } = 1;
-        public short? NotInGiftCardList { get; set; } = 0;
-        public short? NoAuthSlip { get; set; } = 0;
-        public short? AskSignature { get; set; } = 0;
+        public short AllowVoids { get; set; } = 1;
+        public short NotInGiftCardList { get; set; } = 0;
+        public short NoAuthSlip { get; set; } = 0;
+        public short AskSignature { get; set; } = 0;
     }
 
     public class MethodPayUpdate

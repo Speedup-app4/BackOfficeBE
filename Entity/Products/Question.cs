@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,7 +15,7 @@ namespace BackOffice.Entity.Products
         public required string QUESTION { get; set; }
         public required short FORCED { get; set; } = 1; //*Min choice
         public required short NUMCHOICE { get; set; } = 1; //*Max choice
-        public required short ISACTIVE { get; set; } = 1;
+        public short ISACTIVE { get; set; } = 1;
 
         // ---------------------------------------------------------
         // ---------------------------------------------------------

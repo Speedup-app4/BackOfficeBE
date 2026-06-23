@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -282,7 +284,7 @@ namespace BackOffice.Entity.Products
         public long? ReflectionUpdate { get; set; }
 
         [NotMapped]
-        [JsonPropertyName("ProductComboes")]
+        [JsonPropertyName("productComboes")]
         public List<ProductCombo>? ProductCombos { get; set; }
     }
 }

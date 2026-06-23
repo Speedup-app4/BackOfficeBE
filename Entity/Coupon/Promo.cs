@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,7 +15,7 @@ namespace BackOffice.Entity.Coupon
         public string? DESCRIPT { get; set; }
         public double? AMOUNT { get; set; }
         public short? SECLEVEL { get; set; }
-        public short? ISACTIVE { get; set; }
+        public short ISACTIVE { get; set; } = 1;
         public short? PERCENT { get; set; }
         public short? ISMANUAL { get; set; }
         public short? TAX1 { get; set; }
@@ -33,38 +35,38 @@ namespace BackOffice.Entity.Coupon
         public short? TWOFORONE { get; set; }
         public int? AccountCode { get; set; }
         public int? POINTREQ { get; set; }
-        public short? UpdateStatus { get; set; } = 1;
+        public short UpdateStatus { get; set; } = 1;
         public int? OneOnly { get; set; }
         public DateTime? RANGESTART { get; set; }
         public DateTime? RANGEEND { get; set; }
         public int? PRODNUM { get; set; }
         public int? ISAUTOPROD { get; set; }
         public int? AUTOPRODNUM { get; set; }
-        public double? AUTOPRODQUAN { get; set; } = 1;
-        public int? MEMBEREXIST { get; set; } = 0;
+        public double AUTOPRODQUAN { get; set; } = 1;
+        public int MEMBEREXIST { get; set; } = 0;
         public string? MarketingCode { get; set; }
         public short? EnableOnWeb { get; set; }
         public string? PLink { get; set; }
         public string? LongCDesc { get; set; }
-        public int? RevCenter { get; set; } = 0;
+        public int RevCenter { get; set; } = 0;
         public short? CouponKind { get; set; }
         public double? FixedPrice { get; set; }
         public double? MaxAmount { get; set; }
         public double? MinQuan { get; set; }
         public double? MinCost { get; set; }
-        public short? AutoCalc { get; set; } = 0;
+        public short AutoCalc { get; set; } = 0;
         public string? DllName { get; set; }
-        public short? AutoApply { get; set; } = 0;
-        public short? RequireVoucher { get; set; } = 0;
-        public short? CalcMethod { get; set; } = 0;
-        public short? UseReqItems { get; set; } = 0;
-        public int? SecLock { get; set; } = 0;
+        public short AutoApply { get; set; } = 0;
+        public short RequireVoucher { get; set; } = 0;
+        public short CalcMethod { get; set; } = 0;
+        public short UseReqItems { get; set; } = 0;
+        public int SecLock { get; set; } = 0;
         public int? XValue { get; set; }
         public int? YValue { get; set; }
-        public short? NoMemPoints { get; set; } = 0;
-        public int? PromoCatID { get; set; } = 0;
-        public int? SNum { get; set; } = -1;
-        public long? ReflectionUpdate { get; set; } = 0;
+        public short NoMemPoints { get; set; } = 0;
+        public int PromoCatID { get; set; } = 0;
+        public int SNum { get; set; } = -1;
+        public long ReflectionUpdate { get; set; } = 0;
 
         [NotMapped]
         public List<PromoReportCat>? PromoReportCats { get; set; }

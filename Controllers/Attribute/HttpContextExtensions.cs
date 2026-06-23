@@ -1,3 +1,6 @@
+using System;
+using Microsoft.AspNetCore.Http;
+
 namespace BackOffice.Controllers.Attribute
 {
     public static class HttpContextExtensions

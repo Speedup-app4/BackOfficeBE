@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,7 +18,7 @@ namespace BackOffice.Entity.Report
         public short TAX4 { get; set; } = 0;
         public short TAX5 { get; set; } = 0;
         public required int SUMMARYNUM { get; set; } //* Summary group ID
-        public required short ISACTIVE { get; set; } = 1;
+        public short ISACTIVE { get; set; } = 1;
 
         // ---------------------------------------------------------
         // ---------------------------------------------------------
