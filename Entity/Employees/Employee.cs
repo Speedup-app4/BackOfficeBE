@@ -89,7 +89,6 @@ namespace BackOffice.Entity.Employees
         public byte[]? PWDHash { get; set; }
         public int SNum { get; set; } = -1;
         public int LastTrans { get; set; } = 0;
-        public long ReflectionUpdate { get; set; } = 0;
 
         [NotMapped]
         [JsonPropertyName("payRoll")]
@@ -179,7 +178,6 @@ namespace BackOffice.Entity.Employees
         public byte[]? PWDHash { get; set; }
         public int? SNum { get; set; }
         public int? LastTrans { get; set; }
-        public long? ReflectionUpdate { get; set; }
 
         [NotMapped]
         [JsonPropertyName("payRoll")]

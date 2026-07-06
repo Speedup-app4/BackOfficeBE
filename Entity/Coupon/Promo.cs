@@ -66,7 +66,6 @@ namespace BackOffice.Entity.Coupon
         public short NoMemPoints { get; set; } = 0;
         public int PromoCatID { get; set; } = 0;
         public int SNum { get; set; } = -1;
-        public long ReflectionUpdate { get; set; } = 0;
 
         [NotMapped]
         public List<PromoReportCat>? PromoReportCats { get; set; }
@@ -130,7 +129,6 @@ namespace BackOffice.Entity.Coupon
         public short? NoMemPoints { get; set; }
         public int? PromoCatID { get; set; }
         public int? SNum { get; set; }
-        public long? ReflectionUpdate { get; set; }
 
         [NotMapped]
         public List<PromoReportCat>? PromoReportCats { get; set; }

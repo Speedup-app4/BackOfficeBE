@@ -16,10 +16,10 @@ namespace BackOffice.Controllers.Modules.Coupon
     {
         [HttpGet]
         [RequireClientId]
-        public async Task<IActionResult> Get() =>
+        public async Task<IActionResult> Get([FromQuery] bool isActive) =>
             Ok(
                 ApiResponse<IEnumerable<PromoCat>>.Ok(
-                    await _service.GetAll(HttpContext.GetClientId())
+                    await _service.GetAll(HttpContext.GetClientId(), isActive)
                 )
             );
     }

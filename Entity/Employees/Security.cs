@@ -17,7 +17,6 @@ namespace BackOffice.Entity.Employees
         public short AskForReason { get; set; } = 0;
         public int UpdateStatus { get; set; } = 1;
         public int SNUM { get; set; } = -1;
-        public long ReflectionUpdate { get; set; } = 0;
     }
 
     public class SecurityUpdate
@@ -31,6 +30,5 @@ namespace BackOffice.Entity.Employees
         public short? AskForReason { get; set; }
         public int? UpdateStatus { get; set; }
         public int? SNUM { get; set; }
-        public long? ReflectionUpdate { get; set; }
     }
 }

@@ -58,7 +58,6 @@ namespace BackOffice.Entity.Payment
         public short MemGiftOnly { get; set; } = 0;
         public short NotInPaymtList { get; set; } = 0;
         public int SNUM { get; set; } = -1;
-        public long ReflectionUpdate { get; set; } = 0;
         public short PromptNote { get; set; } = 0;
         public int? PMReportNum { get; set; }
         public short AllowVoids { get; set; } = 1;
@@ -118,7 +117,6 @@ namespace BackOffice.Entity.Payment
         public short? MemGiftOnly { get; set; }
         public short? NotInPaymtList { get; set; }
         public int? SNUM { get; set; }
-        public long? ReflectionUpdate { get; set; }
         public short? PromptNote { get; set; }
         public int? PMReportNum { get; set; }
         public short? AllowVoids { get; set; }

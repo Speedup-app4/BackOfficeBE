@@ -141,7 +141,6 @@ namespace BackOffice.Entity.Products
         public double? Tax5Quan { get; set; }
         public string? PrintDes2 { get; set; }
         public short? MemberProduct { get; set; }
-        public long? ReflectionUpdate { get; set; }
 
         [NotMapped]
         [JsonPropertyName("productComboes")] //* Khổ quá sai chính tả phải map lại
@@ -281,7 +280,6 @@ namespace BackOffice.Entity.Products
         public double? Tax5Quan { get; set; }
         public string? PrintDes2 { get; set; }
         public short? MemberProduct { get; set; }
-        public long? ReflectionUpdate { get; set; }
 
         [NotMapped]
         [JsonPropertyName("productComboes")]

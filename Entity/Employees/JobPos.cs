@@ -31,7 +31,6 @@ namespace BackOffice.Entity.Employees
         public int EmpCount { get; set; } = 0;
         public int AuthByBio { get; set; } = 0;
         public int SNum { get; set; } = -1;
-        public long ReflectionUpdate { get; set; } = 0;
     }
 
     public class JobPosUpdate
@@ -58,6 +57,5 @@ namespace BackOffice.Entity.Employees
         public int? EmpCount { get; set; }
         public int? AuthByBio { get; set; }
         public int? SNum { get; set; }
-        public long? ReflectionUpdate { get; set; }
     }
 }

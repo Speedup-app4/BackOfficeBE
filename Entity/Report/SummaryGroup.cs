@@ -21,7 +21,6 @@ namespace BackOffice.Entity.Report
         public int? reporttype { get; set; }
         public string? PLink { get; set; }
         public int? SNUM { get; set; } = -1;
-        public long? ReflectionUpdate { get; set; } = 0;
     }
 
     public class SummaryGroupUpdate
@@ -38,6 +37,5 @@ namespace BackOffice.Entity.Report
         public int? reporttype { get; set; }
         public string? PLink { get; set; }
         public int? SNUM { get; set; }
-        public long? ReflectionUpdate { get; set; }
     }
 }

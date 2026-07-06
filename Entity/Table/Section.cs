@@ -25,7 +25,6 @@ namespace BackOffice.Entity.Table
         public short AUTOSEAT { get; set; } = 0;
         public int RevCenter { get; set; } = 0;
         public int SNUM { get; set; } = -1;
-        public long ReflectionUpdate { get; set; } = 0;
     }
 
     public class SectionUpdate
@@ -46,6 +45,5 @@ namespace BackOffice.Entity.Table
         public short? AUTOSEAT { get; set; }
         public int? RevCenter { get; set; }
         public int? SNUM { get; set; }
-        public long? ReflectionUpdate { get; set; }
     }
 }

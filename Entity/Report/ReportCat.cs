@@ -40,7 +40,6 @@ namespace BackOffice.Entity.Report
         public double? Tax4Quan { get; set; } = 0;
         public double? Tax5Quan { get; set; } = 0;
         public int? SNUM { get; set; } = -1;
-        public long? ReflectionUpdate { get; set; } = 0;
     }
 
     public class ReportCatUpdate
@@ -76,6 +75,5 @@ namespace BackOffice.Entity.Report
         public double? Tax4Quan { get; set; }
         public double? Tax5Quan { get; set; }
         public int? SNUM { get; set; }
-        public long? ReflectionUpdate { get; set; }
     }
 }

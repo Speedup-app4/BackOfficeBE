@@ -33,7 +33,6 @@ namespace BackOffice.Entity.System
         public short EnforceMember { get; set; } = 0;
         public short EnforceFutureOrder { get; set; } = 0;
         public int SNUM { get; set; } = -1;
-        public long ReflectionUpdate { get; set; } = 0;
     }
 
     public class SalesTypeUpdate
@@ -63,6 +62,5 @@ namespace BackOffice.Entity.System
         public short? EnforceMember { get; set; }
         public short? EnforceFutureOrder { get; set; }
         public int? SNUM { get; set; }
-        public long? ReflectionUpdate { get; set; }
     }
 }
