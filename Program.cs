@@ -91,6 +91,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 //* Repository
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
 builder.Services.AddScoped<IAutoIncRepository, AutoIncRepository>();
 builder.Services.AddScoped<ISysInfoRepository, SysInfoRepository>();
 builder.Services.AddScoped<IRevenueCenterRepository, RevenueCenterRepository>();
@@ -129,6 +130,7 @@ builder.Services.AddScoped<IPromoGrpDetailRepository, PromoGrpDetailRepository>(
 
 //* Service
 builder.Services.AddScoped<ClientService>();
+builder.Services.AddScoped<DeviceService>();
 builder.Services.AddScoped<SysInfoService>();
 builder.Services.AddScoped<RevenueCenterService>();
 builder.Services.AddScoped<SummaryGroupService>();

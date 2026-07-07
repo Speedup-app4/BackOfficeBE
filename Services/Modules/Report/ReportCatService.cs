@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Report
     {
         public async Task<IEnumerable<ReportCat>> GetAll(Guid clientId)
         {
-            return await _uow.ReportCat.GetAllAsync(true, clientId);
+            return await _uow.ReportCat.GetAllAsync(clientId, true);
         }
 
         public async Task<ReportCat> Create(Guid clientId, ReportCat reportCat)

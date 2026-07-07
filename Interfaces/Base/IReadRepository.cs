@@ -10,22 +10,19 @@ namespace BackOffice.Interfaces.Base
     {
         Task<T?> GetByIdAsync(
             object id,
-            bool? isActive = null,
             Guid? clientId = null,
-            Guid? storeId = null,
+            bool? isActive = null,
             CancellationToken cancellationToken = default
         );
         Task<IEnumerable<T>> GetByIdsAsync<TId>(
             IEnumerable<TId> ids,
-            bool? isActive = null,
             Guid? clientId = null,
-            Guid? storeId = null,
+            bool? isActive = null,
             CancellationToken cancellationToken = default
         );
         Task<IEnumerable<T>> GetAllAsync(
-            bool? isActive = true,
             Guid? clientId = null,
-            Guid? storeId = null,
+            bool? isActive = null,
             CancellationToken cancellationToken = default
         );
         Task<int> CountAllAsync(CancellationToken cancellationToken = default);

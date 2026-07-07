@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.Employees
     {
         public async Task<IEnumerable<PayRoll>> GetAll(Guid clientId)
         {
-            return await _uow.PayRoll.GetAllAsync(true, clientId);
+            return await _uow.PayRoll.GetAllAsync(clientId, true);
         }
     }
 }

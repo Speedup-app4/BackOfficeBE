@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Products
     {
         public async Task<IEnumerable<ProductCombo>> GetAll(Guid clientId)
         {
-            return await _uow.ProductCombo.GetAllAsync(true, clientId);
+            return await _uow.ProductCombo.GetAllAsync(clientId, true);
         }
 
         public async Task<ProductCombo> Create(Guid clientId, ProductCombo productCombo)

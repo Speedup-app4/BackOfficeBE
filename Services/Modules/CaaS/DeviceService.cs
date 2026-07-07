@@ -10,7 +10,27 @@ namespace BackOffice.Services.Modules.CaaS
     {
         public async Task<IEnumerable<Device>> GetAll(Guid clientId)
         {
-            return await _uow.Device.GetAllAsync(true, clientId);
+            return await _uow.Device.GetAllAsync(clientId);
+        }
+
+        public async Task<Device> Update(Guid clientId, DeviceUpdate device)
+        {
+            try
+            {
+                _uow.BeginTransaction();
+                var updatedDevice = await _uow.Device.UpdatePartialAsync(
+                    device,
+                    device.DeviceId,
+                    clientId
+                );
+                _uow.Commit();
+                return updatedDevice;
+            }
+            catch
+            {
+                _uow.Rollback();
+                throw;
+            }
         }
     }
 }

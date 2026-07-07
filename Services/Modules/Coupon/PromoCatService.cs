@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.Coupon
     {
         public async Task<IEnumerable<PromoCat>> GetAll(Guid clientId, bool isActive)
         {
-            return await _uow.PromoCat.GetAllAsync(isActive, clientId);
+            return await _uow.PromoCat.GetAllAsync(clientId, isActive);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Refund
     {
         public async Task<IEnumerable<RefundReason>> GetAll(Guid clientId)
         {
-            return await _uow.RefundReason.GetAllAsync(true, clientId);
+            return await _uow.RefundReason.GetAllAsync(clientId, true);
         }
 
         public async Task<RefundReason> Create(Guid clientId, RefundReason refundReason)

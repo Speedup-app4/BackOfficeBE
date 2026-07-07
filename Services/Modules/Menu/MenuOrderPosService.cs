@@ -22,14 +22,14 @@ namespace BackOffice.Services.Modules.Menu
                     .. await _uow.MenuOrderPos.GetByMenuIndex(menuIndex.Value, clientId),
                 ];
             else
-                menuOrderPos = [.. await _uow.MenuOrderPos.GetAllAsync(true, clientId)];
+                menuOrderPos = [.. await _uow.MenuOrderPos.GetAllAsync(clientId, true)];
 
             List<OrderCat> orderCats = [];
 
             if (isGetOrderCat == true)
             {
                 var orderCatIds = menuOrderPos.Select(mop => mop.ORDERCAT).Distinct();
-                orderCats = [.. await _uow.OrderCat.GetByIdsAsync(orderCatIds, true, clientId)];
+                orderCats = [.. await _uow.OrderCat.GetByIdsAsync(orderCatIds, clientId, true)];
             }
 
             var joinData = menuOrderPos.Select(m =>

@@ -160,9 +160,8 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
     }
 
     public virtual async Task<IEnumerable<T>> GetAllAsync(
-        bool? isActive = true,
         Guid? clientId = null,
-        Guid? storeId = null,
+        bool? isActive = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -189,12 +188,6 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
                 parameters.Add("@ClientId", clientId.Value);
             }
 
-            if (storeId.HasValue)
-            {
-                conditions.Add("\"StoreId\" = @StoreId");
-                parameters.Add("@StoreId", storeId.Value);
-            }
-
             if (conditions.Count > 0)
                 query += " WHERE " + string.Join(" AND ", conditions);
 
@@ -209,9 +202,8 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
 
     public virtual async Task<IEnumerable<T>> GetByIdsAsync<TId>(
         IEnumerable<TId> ids,
-        bool? isActive = null,
         Guid? clientId = null,
-        Guid? storeId = null,
+        bool? isActive = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -242,12 +234,6 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
                 parameters.Add("@ClientId", clientId.Value);
             }
 
-            if (storeId.HasValue)
-            {
-                query += " AND \"StoreId\" = @StoreId";
-                parameters.Add("@StoreId", storeId.Value);
-            }
-
             return await _uow.Connection.QueryAsync<T>(query, parameters, _uow.Transaction);
         }
         catch (Exception ex)
@@ -261,9 +247,8 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
 
     public virtual async Task<T?> GetByIdAsync(
         object id,
-        bool? isActive = null,
         Guid? clientId = null,
-        Guid? storeId = null,
+        bool? isActive = null,
         CancellationToken cancellationToken = default
     )
     {
@@ -289,12 +274,6 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
             {
                 query += " AND \"ClientId\" = @ClientId";
                 parameters.Add("@ClientId", clientId.Value);
-            }
-
-            if (storeId.HasValue)
-            {
-                query += " AND \"StoreId\" = @StoreId";
-                parameters.Add("@StoreId", storeId.Value);
             }
 
             return await _uow.Connection.QueryFirstOrDefaultAsync<T>(

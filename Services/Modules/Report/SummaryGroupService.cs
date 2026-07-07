@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Report
     {
         public async Task<IEnumerable<SummaryGroup>> GetAll(Guid clientId)
         {
-            return await _uow.SummaryGroups.GetAllAsync(true, clientId);
+            return await _uow.SummaryGroups.GetAllAsync(clientId, true);
         }
 
         public async Task<SummaryGroup> Create(Guid clientId, SummaryGroup summaryGroup)

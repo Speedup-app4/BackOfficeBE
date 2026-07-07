@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Employees
     {
         public async Task<IEnumerable<JobPos>> GetAll(Guid clientId)
         {
-            return await _uow.JobPos.GetAllAsync(true, clientId);
+            return await _uow.JobPos.GetAllAsync(clientId, true);
         }
 
         public async Task<JobPos> Create(Guid clientId, JobPos jobPos)

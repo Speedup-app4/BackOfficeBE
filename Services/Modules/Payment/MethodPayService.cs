@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Payment
     {
         public async Task<IEnumerable<MethodPay>> GetAll(Guid clientId)
         {
-            return await _uow.MethodPay.GetAllAsync(true, clientId);
+            return await _uow.MethodPay.GetAllAsync(clientId, true);
         }
 
         public async Task<MethodPay> Create(Guid clientId, MethodPay methodPay)

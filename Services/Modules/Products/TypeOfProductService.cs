@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.Products
     {
         public async Task<IEnumerable<TypeOfProd>> GetAll(Guid clientId)
         {
-            return await _uow.TypeOfProd.GetAllAsync(true, clientId);
+            return await _uow.TypeOfProd.GetAllAsync(clientId, true);
         }
     }
 }

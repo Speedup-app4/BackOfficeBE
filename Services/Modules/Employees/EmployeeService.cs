@@ -19,7 +19,7 @@ namespace BackOffice.Services.Modules.Employees
             if (EmpNum.HasValue)
             {
                 var employee =
-                    await _uow.Employee.GetByIdAsync(EmpNum.Value, true, clientId)
+                    await _uow.Employee.GetByIdAsync(EmpNum.Value, clientId, true)
                     ?? throw new Exception("Không tìm thấy mã nhân viên");
 
                 employeeList.Add(employee);
@@ -35,13 +35,13 @@ namespace BackOffice.Services.Modules.Employees
             }
             else
             {
-                var employees = await _uow.Employee.GetAllAsync(true, clientId);
+                var employees = await _uow.Employee.GetAllAsync(clientId, true);
                 employeeList.AddRange(employees);
 
-                var payrolls = await _uow.PayRoll.GetAllAsync(true, clientId);
+                var payrolls = await _uow.PayRoll.GetAllAsync(clientId, true);
                 payRollList.AddRange(payrolls);
 
-                var scheds = await _uow.EmpSchedInfo.GetAllAsync(true, clientId);
+                var scheds = await _uow.EmpSchedInfo.GetAllAsync(clientId, true);
                 empSchedList.AddRange(scheds);
             }
 

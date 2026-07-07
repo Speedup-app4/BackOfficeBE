@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.System
     {
         public async Task<IEnumerable<PrintPort>> GetAll(Guid clientId)
         {
-            return await _uow.PrintPort.GetAllAsync(true, clientId);
+            return await _uow.PrintPort.GetAllAsync(clientId, true);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.System
     {
         public async Task<IEnumerable<FormTemplate>> GetAll(Guid clientId)
         {
-            return await _uow.FormTemplate.GetAllAsync(true, clientId);
+            return await _uow.FormTemplate.GetAllAsync(clientId, true);
         }
     }
 }

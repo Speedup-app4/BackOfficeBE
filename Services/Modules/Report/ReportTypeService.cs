@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.Report
     {
         public async Task<IEnumerable<ReportType>> GetAll(Guid clientId)
         {
-            return await _uow.ReportType.GetAllAsync(true, clientId);
+            return await _uow.ReportType.GetAllAsync(clientId, true);
         }
 
         public async Task<IEnumerable<ReportType>> Update(
@@ -27,7 +27,7 @@ namespace BackOffice.Services.Modules.Report
                     clientId
                 );
                 _uow.Commit();
-                return await _uow.ReportType.GetAllAsync(true, clientId);
+                return await _uow.ReportType.GetAllAsync(clientId, true);
             }
             catch
             {

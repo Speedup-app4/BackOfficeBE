@@ -17,7 +17,7 @@ namespace BackOffice.Services.Modules.Products
             if (ProdNum.HasValue)
             {
                 var product =
-                    await _uow.Product.GetByIdAsync(ProdNum.Value, true, clientId)
+                    await _uow.Product.GetByIdAsync(ProdNum.Value, clientId, true)
                     ?? throw new Exception("Không tìm thấy sản phẩm");
                 productList.Add(product);
 
@@ -29,9 +29,9 @@ namespace BackOffice.Services.Modules.Products
             }
             else
             {
-                var products = await _uow.Product.GetAllAsync(true, clientId);
+                var products = await _uow.Product.GetAllAsync(clientId, true);
                 productList.AddRange(products);
-                var productCombos = await _uow.ProductCombo.GetAllAsync(true, clientId);
+                var productCombos = await _uow.ProductCombo.GetAllAsync(clientId, true);
                 productComboList.AddRange(productCombos);
             }
 

@@ -9,7 +9,7 @@ namespace BackOffice.Services.Modules.Table
     public class TableSetupService(IUnitOfWork _uow)
     {
         public async Task<IEnumerable<TableSetup>> GetAll(Guid ClientId) =>
-            await _uow.TableSetup.GetAllAsync(true, ClientId);
+            await _uow.TableSetup.GetAllAsync(ClientId, true);
 
         public async Task<TableSetup> Create(Guid ClientId, TableSetup entity)
         {
@@ -53,7 +53,7 @@ namespace BackOffice.Services.Modules.Table
             try
             {
                 _uow.BeginTransaction();
-                var entity = await _uow.TableSetup.GetByIdAsync(tablenum, true, ClientId);
+                var entity = await _uow.TableSetup.GetByIdAsync(tablenum, ClientId, true);
                 if (entity != null)
                 {
                     await _uow.TableSetup.DeleteAsync(entity);

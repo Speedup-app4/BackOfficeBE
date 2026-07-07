@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.Employees
     {
         public async Task<IEnumerable<ShiftRule>> GetAll(Guid clientId)
         {
-            return await _uow.ShiftRule.GetAllAsync(true, clientId);
+            return await _uow.ShiftRule.GetAllAsync(clientId, true);
         }
     }
 }

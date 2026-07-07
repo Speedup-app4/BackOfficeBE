@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Station
     {
         public async Task<IEnumerable<StationInfo>> GetAll(Guid clientId)
         {
-            return await _uow.StationInfo.GetAllAsync(true, clientId);
+            return await _uow.StationInfo.GetAllAsync(clientId, true);
         }
 
         public async Task<StationInfo> Create(Guid clientId, StationInfo stationInfo)

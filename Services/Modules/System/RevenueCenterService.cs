@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.System
     {
         public async Task<IEnumerable<RevenueCenter>> GetAllRevenueCentersAsync(Guid clientId)
         {
-            return await _uow.Revenue.GetAllAsync(true, clientId);
+            return await _uow.Revenue.GetAllAsync(clientId, true);
         }
     }
 }

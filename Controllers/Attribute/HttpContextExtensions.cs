@@ -9,10 +9,5 @@ namespace BackOffice.Controllers.Attribute
         {
             return context.Items.TryGetValue("ClientId", out var id) ? (Guid)id! : Guid.Empty;
         }
-
-        public static Guid GetStoreId(this HttpContext context)
-        {
-            return context.Items.TryGetValue("StoreId", out var id) ? (Guid)id! : Guid.Empty;
-        }
     }
 }

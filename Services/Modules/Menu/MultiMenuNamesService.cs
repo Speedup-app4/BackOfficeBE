@@ -12,7 +12,7 @@ namespace BackOffice.Services.Modules.Menu
     {
         public async Task<IEnumerable<MultiMenuName>> GetAll(Guid clientId)
         {
-            return await _uow.MultiMenuName.GetAllAsync(true, clientId);
+            return await _uow.MultiMenuName.GetAllAsync(clientId, true);
         }
 
         public async Task<MultiMenuName> Create(Guid clientId, MultiMenuName multiMenuName)

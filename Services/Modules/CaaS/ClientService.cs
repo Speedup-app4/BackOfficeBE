@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.CaaS
     {
         public async Task<Client> Get(Guid clientId)
         {
-            return await _uow.Client.GetByIdAsync(clientId, true)
+            return await _uow.Client.GetByIdAsync(clientId, null, true)
                 ?? throw new Exception($"Client with ID {clientId} not found.");
         }
 

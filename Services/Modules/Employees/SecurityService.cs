@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.Employees
     {
         public async Task<IEnumerable<Security>> GetAll(Guid clientId)
         {
-            return await _uow.Security.GetAllAsync(true, clientId);
+            return await _uow.Security.GetAllAsync(clientId, true);
         }
 
         public async Task<Security> Update(Guid clientId, SecurityUpdate security)

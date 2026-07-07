@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Table
     {
         public async Task<IEnumerable<Section>> GetAll(Guid clientId)
         {
-            return await _uow.Section.GetAllAsync(true, clientId);
+            return await _uow.Section.GetAllAsync(clientId, true);
         }
 
         public async Task<Section> Create(Guid clientId, Section section)

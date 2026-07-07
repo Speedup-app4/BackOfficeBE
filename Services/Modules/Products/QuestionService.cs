@@ -17,7 +17,7 @@ namespace BackOffice.Services.Modules.Products
             if (OPTIONINDEX.HasValue)
             {
                 var question =
-                    await _uow.Question.GetByIdAsync(OPTIONINDEX.Value, true, clientId)
+                    await _uow.Question.GetByIdAsync(OPTIONINDEX.Value, clientId, true)
                     ?? throw new Exception("Không tìm thấy câu hỏi");
                 questionList.Add(question);
 
@@ -29,11 +29,11 @@ namespace BackOffice.Services.Modules.Products
             }
             else
             {
-                var questions = await _uow.Question.GetAllAsync(true, clientId);
+                var questions = await _uow.Question.GetAllAsync(clientId, true);
                 var questionIds = questions.Select(q => q.OPTIONINDEX).ToList();
                 questionList.AddRange(questions);
 
-                var forcedChoices = await _uow.ForceChoice.GetAllAsync(true, clientId);
+                var forcedChoices = await _uow.ForceChoice.GetAllAsync(clientId, true);
                 forcedChoicesList.AddRange(forcedChoices);
             }
 

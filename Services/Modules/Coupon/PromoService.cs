@@ -18,7 +18,7 @@ namespace BackOffice.Services.Modules.Coupon
             if (promoNum.HasValue)
             {
                 var promo =
-                    await _uow.Promo.GetByIdAsync(promoNum.Value, true, clientId)
+                    await _uow.Promo.GetByIdAsync(promoNum.Value, clientId, true)
                     ?? throw new Exception("Không tìm thấy Promo");
 
                 promoList.Add(promo);
@@ -30,11 +30,11 @@ namespace BackOffice.Services.Modules.Coupon
             }
             else
             {
-                var promos = await _uow.Promo.GetAllAsync(true, clientId);
+                var promos = await _uow.Promo.GetAllAsync(clientId, true);
 
                 promoList.AddRange(promos);
 
-                var details = await _uow.PromoReportCat.GetAllAsync(true, clientId);
+                var details = await _uow.PromoReportCat.GetAllAsync(clientId, true);
                 if (details != null)
                     promoReportCatList.AddRange(details);
             }

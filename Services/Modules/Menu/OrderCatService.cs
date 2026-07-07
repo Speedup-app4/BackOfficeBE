@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.Menu
     {
         public async Task<IEnumerable<OrderCat>> GetAll(Guid clientId)
         {
-            return await _uow.OrderCat.GetAllAsync(true, clientId);
+            return await _uow.OrderCat.GetAllAsync(clientId, true);
         }
 
         public async Task<OrderCat> Create(Guid clientId, OrderCat orderCat)

@@ -11,7 +11,7 @@ namespace BackOffice.Services.Modules.System
     {
         public async Task<IEnumerable<SalesType>> GetAll(Guid clientId)
         {
-            return await _uow.SalesType.GetAllAsync(true, clientId);
+            return await _uow.SalesType.GetAllAsync(clientId, true);
         }
 
         public async Task<SalesType> Create(Guid clientId, SalesType salesType)

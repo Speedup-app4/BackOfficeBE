@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.System
     {
         public async Task<IEnumerable<PixelLookup>> GetAll(Guid clientId)
         {
-            return await _uow.PixelLookup.GetAllAsync(true, clientId);
+            return await _uow.PixelLookup.GetAllAsync(clientId, true);
         }
     }
 }

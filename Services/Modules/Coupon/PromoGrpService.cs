@@ -18,7 +18,7 @@ namespace BackOffice.Services.Modules.Coupon
             if (promoGrpId.HasValue)
             {
                 var promoGrp =
-                    await _uow.PromoGrp.GetByIdAsync(promoGrpId.Value, true, clientId)
+                    await _uow.PromoGrp.GetByIdAsync(promoGrpId.Value, clientId, true)
                     ?? throw new Exception("Không tìm thấy Promo Group");
 
                 promoGrpList.Add(promoGrp);
@@ -29,10 +29,10 @@ namespace BackOffice.Services.Modules.Coupon
             }
             else
             {
-                var grps = await _uow.PromoGrp.GetAllAsync(true, clientId);
+                var grps = await _uow.PromoGrp.GetAllAsync(clientId, true);
                 promoGrpList.AddRange(grps);
 
-                var details = await _uow.PromoGrpDetail.GetAllAsync(true, clientId);
+                var details = await _uow.PromoGrpDetail.GetAllAsync(clientId, true);
                 if (details != null)
                     promoGrpDetailList.AddRange(details);
             }

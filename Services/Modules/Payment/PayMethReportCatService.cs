@@ -10,7 +10,7 @@ namespace BackOffice.Services.Modules.Payment
     {
         public async Task<IEnumerable<PayMethReportCat>> GetAll(Guid clientId)
         {
-            return await _uow.PayMethReportCat.GetAllAsync(true, clientId);
+            return await _uow.PayMethReportCat.GetAllAsync(clientId, true);
         }
     }
 }

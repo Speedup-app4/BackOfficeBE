@@ -20,14 +20,14 @@ namespace BackOffice.Services.Modules.Menu
             if (orderCat.HasValue)
                 menuProdPos = [.. await _uow.MenuProdPos.GetByOrderCat(orderCat.Value, clientId)];
             else
-                menuProdPos = [.. await _uow.MenuProdPos.GetAllAsync(true, clientId)];
+                menuProdPos = [.. await _uow.MenuProdPos.GetAllAsync(clientId, true)];
 
             List<Product> products = [];
 
             if (isGetProduct == true)
             {
                 var productIds = menuProdPos.Select(mpp => mpp.PRODNUM).Distinct();
-                products = [.. await _uow.Product.GetByIdsAsync(productIds, true, clientId)];
+                products = [.. await _uow.Product.GetByIdsAsync(productIds, clientId, true)];
             }
 
             var joinData = menuProdPos.Select(m =>
