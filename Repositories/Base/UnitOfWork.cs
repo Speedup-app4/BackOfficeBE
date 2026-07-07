@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using BackOffice.Interfaces.Base;
+using BackOffice.Interfaces.Modules.CaaS;
 using BackOffice.Interfaces.Modules.Coupon;
 using BackOffice.Interfaces.Modules.Employees;
 using BackOffice.Interfaces.Modules.Menu;
@@ -11,6 +12,7 @@ using BackOffice.Interfaces.Modules.Report;
 using BackOffice.Interfaces.Modules.Station;
 using BackOffice.Interfaces.Modules.System;
 using BackOffice.Interfaces.Modules.Table;
+using BackOffice.Repositories.Modules.CaaS;
 using BackOffice.Repositories.Modules.Coupon;
 using BackOffice.Repositories.Modules.Employees;
 using BackOffice.Repositories.Modules.Menu;
@@ -72,6 +74,8 @@ namespace BackOffice.Repositories.Base
             GC.SuppressFinalize(this);
         }
 
+        private IClientRepository? _client;
+        private IDeviceRepository? _device;
         private IAutoIncRepository? _autoInc;
         private ISysInfoRepository? _sysInfo;
         private IRevenueCenterRepository? _revenue;
@@ -109,7 +113,10 @@ namespace BackOffice.Repositories.Base
         private IPromoReportCatRepository? _promoReportCat;
         private IPromoGrpRepository? _promoGrp;
         private IPromoGrpDetailRepository? _promoGrpDetail;
+        private ITableSetupRepository? _tableSetup;
 
+        public IClientRepository Client => _client ??= new ClientRepository(this);
+        public IDeviceRepository Device => _device ??= new DeviceRepository(this);
         public IAutoIncRepository AutoInc => _autoInc ??= new AutoIncRepository(this);
         public ISysInfoRepository SysInfo => _sysInfo ??= new SysInfoRepository(this);
         public IRevenueCenterRepository Revenue => _revenue ??= new RevenueCenterRepository(this);
@@ -163,5 +170,6 @@ namespace BackOffice.Repositories.Base
         public IPromoGrpRepository PromoGrp => _promoGrp ??= new PromoGrpRepository(this);
         public IPromoGrpDetailRepository PromoGrpDetail =>
             _promoGrpDetail ??= new PromoGrpDetailRepository(this);
+        public ITableSetupRepository TableSetup => _tableSetup ??= new TableSetupRepository(this);
     }
 }

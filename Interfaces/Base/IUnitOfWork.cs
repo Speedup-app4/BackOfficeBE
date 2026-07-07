@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using BackOffice.Interfaces.Modules.CaaS;
 using BackOffice.Interfaces.Modules.Coupon;
 using BackOffice.Interfaces.Modules.Employees;
 using BackOffice.Interfaces.Modules.Menu;
@@ -21,6 +22,8 @@ namespace BackOffice.Interfaces.Base
         void Commit();
         void Rollback();
 
+        IClientRepository Client { get; }
+        IDeviceRepository Device { get; }
         IAutoIncRepository AutoInc { get; }
         ISysInfoRepository SysInfo { get; }
         IRevenueCenterRepository Revenue { get; }
@@ -57,5 +60,6 @@ namespace BackOffice.Interfaces.Base
         IPromoReportCatRepository PromoReportCat { get; }
         IPromoGrpRepository PromoGrp { get; }
         IPromoGrpDetailRepository PromoGrpDetail { get; }
+        ITableSetupRepository TableSetup { get; }
     }
 }

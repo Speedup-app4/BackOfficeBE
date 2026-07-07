@@ -22,5 +22,14 @@ namespace BackOffice.Controllers.Modules.System
                     await _service.GetAllSysInfosAsync(HttpContext.GetClientId())
                 )
             );
+
+        [HttpPut]
+        [RequireClientId]
+        public async Task<IActionResult> Put([FromBody] SysInfo sysInfo)
+        {
+            sysInfo.ClientId = HttpContext.GetClientId();
+            var updated = await _service.UpdateSysInfoAsync(sysInfo);
+            return Ok(ApiResponse<SysInfo>.Ok(updated));
+        }
     }
 }

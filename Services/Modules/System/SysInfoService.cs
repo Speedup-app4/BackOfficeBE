@@ -12,5 +12,10 @@ namespace BackOffice.Services.Modules.System
         {
             return await _uow.SysInfo.GetAllAsync(true, clientId);
         }
+
+        public async Task<SysInfo> UpdateSysInfoAsync(SysInfo sysInfo)
+        {
+            return await _uow.SysInfo.UpdateAsync(sysInfo);
+        }
     }
 }

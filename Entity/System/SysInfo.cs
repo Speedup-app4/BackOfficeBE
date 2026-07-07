@@ -10,18 +10,18 @@ namespace BackOffice.Entity.System
         public Guid ClientId { get; set; }
 
         [Key]
-        public required string COMPANY { get; set; }
-        public required string TAXDES1 { get; set; }
-        public required string TAXDES2 { get; set; }
-        public required string TAXDES3 { get; set; }
-        public required string TAXDES4 { get; set; }
-        public required string TAXDES5 { get; set; }
-        public required short TAXRATE1 { get; set; }
-        public required short TAXRATE2 { get; set; }
-        public required short TAXRATE3 { get; set; }
-        public required short TAXRATE4 { get; set; }
-        public required short TAXRATE5 { get; set; }
-        public required short UseVAT { get; set; }
+        public string? COMPANY { get; set; }
+        public string? TAXDES1 { get; set; }
+        public string? TAXDES2 { get; set; }
+        public string? TAXDES3 { get; set; }
+        public string? TAXDES4 { get; set; }
+        public string? TAXDES5 { get; set; }
+        public short? TAXRATE1 { get; set; }
+        public short? TAXRATE2 { get; set; }
+        public short? TAXRATE3 { get; set; }
+        public short? TAXRATE4 { get; set; }
+        public short? TAXRATE5 { get; set; }
+        public short? UseVAT { get; set; }
 
         // ---------------------------------------------------------
         // ---------------------------------------------------------
