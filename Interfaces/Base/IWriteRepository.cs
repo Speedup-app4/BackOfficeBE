@@ -17,14 +17,12 @@ namespace BackOffice.Interfaces.Base
         Task<T> UpdatePartialAsync(
             object updateDto,
             object idValue,
-            Guid? clientId = null,
-            Guid? storeId = null,
+            Guid clientId,
             CancellationToken cancellationToken = default
         );
         Task<int> UpdatePartialRangeAsync<TUpdateDto>(
             IEnumerable<TUpdateDto> updateDtos,
-            Guid? clientId = null,
-            Guid? storeId = null,
+            Guid clientId,
             CancellationToken cancellationToken = default
         );
         Task<int> DeleteAsync(T entity, CancellationToken cancellationToken = default);

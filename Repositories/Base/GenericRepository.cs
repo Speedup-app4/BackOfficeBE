@@ -110,15 +110,30 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
         }
     }
 
-    public virtual async Task<int> CountAllAsync(CancellationToken cancellationToken = default)
+    public virtual async Task<int> CountAllAsync(
+        Guid clientId,
+        bool? isActive = null,
+        CancellationToken cancellationToken = default
+    )
     {
         try
         {
             string tableName = GetTableName();
-            string query = $"SELECT COUNT(*) FROM {tableName}";
+            string query = $"SELECT COUNT(*) FROM {tableName} WHERE \"ClientId\" = @ClientId";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@ClientId", clientId);
+
+            string? isActiveColumn = GetIsActiveColumnName();
+            if (isActiveColumn != null && isActive.HasValue)
+            {
+                query += $" AND {isActiveColumn} = @IsActiveVal";
+                parameters.Add("@IsActiveVal", isActive.Value ? 1 : 0);
+            }
 
             return await _uow.Connection.QueryFirstOrDefaultAsync<int>(
                 query,
+                parameters,
                 transaction: _uow.Transaction
             );
         }
@@ -160,7 +175,7 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
     }
 
     public virtual async Task<IEnumerable<T>> GetAllAsync(
-        Guid? clientId = null,
+        Guid clientId,
         bool? isActive = null,
         CancellationToken cancellationToken = default
     )
@@ -170,26 +185,17 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
             string tableName = GetTableName();
             string columns = GetColumnsAsProperties();
 
-            string query = $"SELECT {columns} FROM {tableName}";
+            string query = $"SELECT {columns} FROM {tableName} WHERE \"ClientId\" = @ClientId";
 
             var parameters = new DynamicParameters();
-            var conditions = new List<string>();
+            parameters.Add("@ClientId", clientId);
 
             string? isActiveColumn = GetIsActiveColumnName();
             if (isActiveColumn != null && isActive.HasValue)
             {
-                conditions.Add($"{isActiveColumn} = @IsActiveVal");
+                query += $" AND {isActiveColumn} = @IsActiveVal";
                 parameters.Add("@IsActiveVal", isActive.Value ? 1 : 0);
             }
-
-            if (clientId.HasValue)
-            {
-                conditions.Add("\"ClientId\" = @ClientId");
-                parameters.Add("@ClientId", clientId.Value);
-            }
-
-            if (conditions.Count > 0)
-                query += " WHERE " + string.Join(" AND ", conditions);
 
             var result = await _uow.Connection.QueryAsync<T>(query, parameters, _uow.Transaction);
             return [.. result];
@@ -202,7 +208,7 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
 
     public virtual async Task<IEnumerable<T>> GetByIdsAsync<TId>(
         IEnumerable<TId> ids,
-        Guid? clientId = null,
+        Guid clientId,
         bool? isActive = null,
         CancellationToken cancellationToken = default
     )
@@ -216,22 +222,17 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
             string? keyColumn = GetKeyColumnName();
 
             string query =
-                $"SELECT {GetColumnsAsProperties()} FROM {tableName} WHERE {keyColumn} = ANY(@Ids)";
+                $"SELECT {GetColumnsAsProperties()} FROM {tableName} WHERE {keyColumn} = ANY(@Ids) AND \"ClientId\" = @ClientId";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Ids", ids.ToArray());
+            parameters.Add("@ClientId", clientId);
 
             string? isActiveColumn = GetIsActiveColumnName();
             if (isActive.HasValue && isActiveColumn != null)
             {
                 query += $" AND {isActiveColumn} = @IsActiveVal";
                 parameters.Add("@IsActiveVal", isActive.Value ? 1 : 0);
-            }
-
-            if (clientId.HasValue)
-            {
-                query += " AND \"ClientId\" = @ClientId";
-                parameters.Add("@ClientId", clientId.Value);
             }
 
             return await _uow.Connection.QueryAsync<T>(query, parameters, _uow.Transaction);
@@ -247,7 +248,7 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
 
     public virtual async Task<T?> GetByIdAsync(
         object id,
-        Guid? clientId = null,
+        Guid clientId,
         bool? isActive = null,
         CancellationToken cancellationToken = default
     )
@@ -258,22 +259,17 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
             string? keyColumn = GetKeyColumnName();
 
             string query =
-                $"SELECT {GetColumnsAsProperties()} FROM {tableName} WHERE {keyColumn} = @Id";
+                $"SELECT {GetColumnsAsProperties()} FROM {tableName} WHERE {keyColumn} = @Id AND \"ClientId\" = @ClientId";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id);
+            parameters.Add("@ClientId", clientId);
 
             string? isActiveColumn = GetIsActiveColumnName();
             if (isActive.HasValue && isActiveColumn != null)
             {
                 query += $" AND {isActiveColumn} = @IsActiveVal";
                 parameters.Add("@IsActiveVal", isActive.Value ? 1 : 0);
-            }
-
-            if (clientId.HasValue)
-            {
-                query += " AND \"ClientId\" = @ClientId";
-                parameters.Add("@ClientId", clientId.Value);
             }
 
             return await _uow.Connection.QueryFirstOrDefaultAsync<T>(
@@ -343,8 +339,7 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
     public virtual async Task<T> UpdatePartialAsync(
         object updateDto,
         object idValue,
-        Guid? clientId = null,
-        Guid? storeId = null,
+        Guid clientId,
         CancellationToken cancellationToken = default
     )
     {
@@ -357,21 +352,14 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
             var query = new StringBuilder($"UPDATE {tableName} SET ");
             var parameters = new DynamicParameters();
 
-            var whereConditions = new List<string> { $"{keyColumn} = @{keyProperty}" };
+            var whereConditions = new List<string> 
+            { 
+                $"{keyColumn} = @{keyProperty}",
+                "\"ClientId\" = @WhereClientId"
+            };
 
             parameters.Add($"@{keyProperty}", idValue);
-
-            if (clientId.HasValue)
-            {
-                whereConditions.Add("\"ClientId\" = @WhereClientId");
-                parameters.Add("@WhereClientId", clientId.Value);
-            }
-
-            if (storeId.HasValue)
-            {
-                whereConditions.Add("\"StoreId\" = @WhereStoreId");
-                parameters.Add("@WhereStoreId", storeId.Value);
-            }
+            parameters.Add("@WhereClientId", clientId);
 
             string whereClause = " WHERE " + string.Join(" AND ", whereConditions);
 
@@ -419,7 +407,7 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
                     _uow.Transaction
                 )
                 ?? throw new Exception(
-                    "No record was found to update (ClientId/StoreId mismatch)."
+                    "No record was found to update (ClientId mismatch)."
                 );
             return updatedEntity;
         }
@@ -439,8 +427,7 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
 
     public virtual async Task<int> UpdatePartialRangeAsync<TUpdateDto>(
         IEnumerable<TUpdateDto> updateDtos,
-        Guid? clientId = null,
-        Guid? storeId = null,
+        Guid clientId,
         CancellationToken cancellationToken = default
     )
     {
@@ -471,15 +458,7 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
                 if (propertyName.Equals(keyProperty, StringComparison.OrdinalIgnoreCase))
                     continue;
 
-                if (
-                    clientId.HasValue
-                    && propertyName.Equals("ClientId", StringComparison.OrdinalIgnoreCase)
-                )
-                    continue;
-                if (
-                    storeId.HasValue
-                    && propertyName.Equals("StoreId", StringComparison.OrdinalIgnoreCase)
-                )
+                if (propertyName.Equals("ClientId", StringComparison.OrdinalIgnoreCase))
                     continue;
 
                 var value = property.GetValue(firstItem);
@@ -498,13 +477,11 @@ public class GenericRepository<T>(IUnitOfWork uow) : IGenericRepository<T>
 
             query.Length--;
 
-            var whereConditions = new List<string> { $"{keyColumn} = @{keyProperty}" };
-
-            if (clientId.HasValue)
-                whereConditions.Add("\"ClientId\" = @ClientId");
-
-            if (storeId.HasValue)
-                whereConditions.Add("\"StoreId\" = @StoreId");
+            var whereConditions = new List<string> 
+            { 
+                $"{keyColumn} = @{keyProperty}",
+                "\"ClientId\" = @ClientId"
+            };
 
             query.Append(" WHERE " + string.Join(" AND ", whereConditions));
 

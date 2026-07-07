@@ -19,7 +19,7 @@ namespace BackOffice.Entity.CaaS
         public required string SerialNumber { get; set; }
         public required string Brand { get; set; }
         public required string Model { get; set; }
-        public required string DeviceType { get; set; }
+        public required short DeviceType { get; set; }
         public required int StatNum { get; set; }
         public required short IsQuickOrder { get; set; }
         public required string AppVersion { get; set; }
